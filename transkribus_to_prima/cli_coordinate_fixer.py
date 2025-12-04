@@ -17,7 +17,7 @@ def cli(inpage, outpage):
     el_page = tree.xpath("//*[local-name()='Page']")[0]
     imageWidth = int(el_page.get('imageWidth'))
     imageHeight = int(el_page.get('imageHeight'))
-    for el_coord in tree.xpath('//*[local-name()="Coords"]'):
+    for el_coord in tree.xpath('//*[./@points]'):
         new_coords = []
         for coord_pair in el_coord.get('points').split(' '):
             x, y = [int(x) for x in coord_pair.split(',')]
