@@ -11,6 +11,9 @@ setup(
     long_description_content_type='text/markdown',
     install_requires=open('requirements.txt').read().split('\n'),
     packages=['transkribus_to_prima'],
+    package_data={
+        '': ['*.xsd'],
+    },
     entry_points={
         'console_scripts': [
             'transkribus-to-prima=transkribus_to_prima.cli:cli',
