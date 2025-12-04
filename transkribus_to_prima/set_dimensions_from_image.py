@@ -5,9 +5,9 @@ from PIL import Image
 
 @command(context_settings={'help_option_names': ['-h', '--help']})
 @option('-F', '--replace-filename', help="also update the @imageFilename", is_flag=True)
-@argument('inpage', type=Path(exists=True, dir_okay=False))
+@argument('inpage', type=Path(exists=True, dir_okay=False, allow_dash=True))
 @argument('image', type=Path(exists=True, dir_okay=False))
-@argument('outpage', type=Path(exists=False, dir_okay=False))
+@argument('outpage', type=Path(exists=False, dir_okay=False, allow_dash=True))
 def cli(replace_filename, inpage, image, outpage):
     """
     Reads a PAGE-XML file INPAGE, and respective image file IMAGE,

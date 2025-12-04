@@ -2,8 +2,8 @@ from click import command, argument, Path
 from lxml import etree as ET
 
 @command(context_settings={'help_option_names': ['-h', '--help']})
-@argument('inpage', type=Path(exists=True, dir_okay=False))
-@argument('outpage', type=Path(exists=False, dir_okay=False))
+@argument('inpage', type=Path(exists=True, dir_okay=False, allow_dash=True))
+@argument('outpage', type=Path(exists=False, dir_okay=False, allow_dash=True))
 def cli(inpage, outpage):
     """
     Reads a PAGE-XML file INPAGE, iterates over all Coords/@points,
