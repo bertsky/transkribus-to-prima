@@ -1,8 +1,6 @@
 from click import command, argument
 from lxml import etree as ET
 
-from .convert import TranskribusToPrima, NS
-
 @command()
 @argument('infile')
 @argument('outfile')
