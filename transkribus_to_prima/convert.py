@@ -19,11 +19,11 @@ class TranskribusToPrima():
         el_page = self.tree.find('{*}Page')
         el_metadata = self.tree.find('{*}Metadata')
         if el_metadata is not None:
-            el_metadata = el_metadata.find('{*}TranskribusMetadata')
-        if el_metadata is not None:
-            if self.prefer_imgurl and 'imgUrl' in el_metadata.attrib:
-                el_page.attrib['imageFilename'] = el_metadata.attrib['imgUrl']
-            el_metadata.getparent().remove(el_metadata)
+            el_transmetadata = el_metadata.find('{*}TranskribusMetadata')
+            if el_transmetadata is not None:
+                if self.prefer_imgurl and 'imgUrl' in el_transmetadata.attrib:
+                    el_page.attrib['imageFilename'] = el_transmetadata.attrib['imgUrl']
+                el_metadata.remove(el_transmetadata)
 
     def convert_reading_order(self):
         """Convert reading order from Relations (Transkribus) to ReadingOrder (PRImA)"""
