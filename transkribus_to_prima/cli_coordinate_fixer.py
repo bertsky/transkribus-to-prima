@@ -19,8 +19,8 @@ def cli(infile, outfile):
         new_coords = []
         for coord_pair in el_coord.get('points').split(' '):
             x, y = [int(x) for x in coord_pair.split(',')]
-            x = min(x, imageWidth - 1)
-            y = min(y, imageHeight - 1)
+            x = max(0, min(x, imageWidth - 1))
+            y = max(0, min(y, imageHeight - 1))
             new_coords.append(f'{x},{y}')
         el_coord.set('points', ' '.join(new_coords))
     tree.write(outfile, encoding='utf-8')
