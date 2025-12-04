@@ -1,13 +1,18 @@
 from lxml import etree as ET
-from click import command, argument
+from click import command, argument, Path
 from PIL import Image
 
 
-@command()
-@argument('inpage')
-@argument('image')
-@argument('outpage')
+@command(context_settings={'help_option_names': ['-h', '--help']})
+@argument('inpage', type=Path(exists=True, dir_okay=False))
+@argument('image', type=Path(exists=True, dir_okay=False))
+@argument('outpage', type=Path(exists=False, dir_okay=False))
 def cli(inpage, image, outpage):
+    """
+    Reads a PAGE-XML file INPAGE, and respective image file IMAGE,
+    updates the Page/@imageWidth and @imageHeight from the image,
+    then writes the resulting PAGE-XML file OUTPAGE.
+    """
     width, height = Image.open(image).size
     tree = ET.parse(inpage)
     el_page = tree.xpath('*[local-name()="Page"]')[0]
